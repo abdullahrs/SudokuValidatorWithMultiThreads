@@ -56,7 +56,7 @@ void *checkSubMatrix(void *param);
 int main(int argc, char const *argv[])
 {
     // Degerlerin kullanicidan alinacagi fonksiyonun cagrilmasi
-    // getValues();
+    // getValuesOneByOne();
     getValuesRowByRow();
     // Main thread
     if(pthread_mutex_init(&lock,NULL) != 0)
@@ -158,31 +158,16 @@ void getValuesRowByRow()
     int i = 0,j = 0;
     for (i; i < 9; i++)
     {
-        char str_row[18];
+        char str_row[20];
         printf("%d'inci satirdaki elemanlari giriniz (x1 x2..x8 x9):",i+1);
-        fgetc(stdin);
         fgets(str_row,sizeof(str_row),stdin);
-        str_row[strcspn(str_row,"\n")] = '\0';
-        char *ptr = str_row;
+        // 9 rakam aralarinda 8 bosluk olacagi icin ilk 17 char'a bakmak yeterli
         for(j=0;j<17;j=j+2)
         {
-            char *val = ptr+j;
-            sudoku_matrix[i][j/2] = atoi(val);
-            if(j/2==8)
-            {
-                printf("%d-%s\n",sudoku_matrix[i][j/2],val);
-            }
+            char val = str_row[j];
+            sudoku_matrix[i][j/2] = atoi(&val);
         }
     }
-    for (i = 0; i < 9; i++)
-    {
-        for(j = 0 ; j < 9 ; j++)
-        {
-            printf("%d ",sudoku_matrix[i][j]);
-        }
-        printf("\n");
-    }
-    
 }
 
 // Sutunlarin kontrol edilecegi fonksiyon
