@@ -214,7 +214,7 @@ void *checkColumn(void *param)
             tempArray[sudoku_matrix[i][col_index] -1 ] = 1;
         }
     }
-    // Eger yukardaki exit'lardan etkilenmeden kodun bu kismina gelebildiyse
+    // Eger yukardaki return'lardan etkilenmeden kodun bu kismina gelebildiyse
     // sutundaki degerler uygundur thread degerine 1 koyarak bu sutundaki
     // degerlerin uygun oldugunu tutuyoruz
     validation++;
@@ -314,8 +314,8 @@ void *checkSubMatrix(void *param)
             }
                
         }
-        validation++;
-        pthread_mutex_unlock(&lock);
-        return NULL;
     }
+    validation++;
+    pthread_mutex_unlock(&lock);
+    return NULL;
 }
