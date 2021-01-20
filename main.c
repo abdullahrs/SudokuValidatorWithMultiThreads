@@ -20,7 +20,7 @@ pthread_t threads[thread_count];
 int validation = 0;
 // Kullanicidan alinacak degerlerin tutulacagi matrix
 int sudoku_matrix[9][9] = {0};
-// Test icin sudoku matriks'i
+// Test icin sudoku dogru matris
 /*
 int sudoku_matrix[9][9] = {
         {4,3,5,2,6,9,7,8,1},
@@ -32,6 +32,20 @@ int sudoku_matrix[9][9] = {
         {5,1,9,3,2,6,8,7,4},
         {2,4,8,9,5,7,1,3,6},
         {7,6,3,4,1,8,2,5,9}
+    };
+*/
+// Test icin sudoku yanlis matris
+/*
+int sudoku_matrix[9][9] = {
+{1, 2, 3, 4, 5, 6, 7, 8, 9}, 
+{1, 2, 3, 4, 5, 6, 7, 8, 9}, 
+{9, 8, 7, 6, 5, 4, 3, 2, 1}, 
+{1, 2, 3, 4, 5, 6, 7, 8, 9}, 
+{1, 2, 3 ,4, 5, 6, 7, 8, 9}, 
+{1, 2, 3, 7, 8, 9, 4, 5, 6}, 
+{9, 8, 7, 6, 5, 4, 3, 2, 1}, 
+{1, 2, 3, 7, 8, 9, 4, 5 ,6}, 
+{1, 2, 3, 4, 5, 6, 7, 8, 9}
     };
 */
 /*Thread fonksiyonlarina kontrol edecekleri satir, sutun ve alt matrislerin
@@ -56,8 +70,10 @@ void *checkSubMatrix(void *param);
 int main(int argc, char const *argv[])
 {
     // Degerlerin kullanicidan alinacagi fonksiyonun cagrilmasi
-    // getValuesOneByOne();
-    getValuesRowByRow();
+    // Tek tek elemanlari almak icin
+    getValuesOneByOne();
+    // Satir satir elemanlari almak icin
+    // getValuesRowByRow();
     // Main thread
     if(pthread_mutex_init(&lock,NULL) != 0)
     {
