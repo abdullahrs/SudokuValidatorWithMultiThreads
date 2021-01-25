@@ -1,9 +1,3 @@
-/*
-Abdullah Rauf Simsek
-180701005
-Isletim Sistemleri Proje Odevi
-Sudoku Dogrulayici
-*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
